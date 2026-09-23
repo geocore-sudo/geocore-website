@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ============================================================
+  GEOCORE ENGINEERING — SITE PREMIUM BILÍNGUE (EN/PT) — VERSÃO FINAL
+  ------------------------------------------------------------
+  GUIA DE EDIÇÃO RÁPIDA → procure "✏️":
+  ✏️ TEXTOS/TRADUÇÕES .. objeto I18N no script (final do arquivo)
+  ✏️ IDIOMA PADRÃO ..... linha "let lang = ... || 'en'"
+  ✏️ FONTES ............ link Google Fonts + variáveis --fh/--fb
+                         (Libre Baskerville = títulos | Inter = texto)
+  ✏️ CONTACTO ......... email/telefone (topbar, contacto, rodapé)
+  ✏️ LOGO ............. img/Logo.png (branco) + tamanho (--logo-h)
+  ✏️ IMAGENS .......... assets/img/...
+  ✏️ WEB3FORMS ........ FORM_CONFIG no script (mude só mode/accessKey)
+  NOTA: botão "voltar" do navegador = 1º topo, 2º sai do site.
+============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCore Engineering | Geotechnical & Foundation Engineering</title>
+<meta name="description" content="Geotechnical investigations, drilling, laboratory testing and foundation engineering in Mozambique and Southern Africa. | Investigações geotécnicas, perfuração, ensaios e engenharia de fundações em Moçambique e na África Austral.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ✏️ FONTES: apenas 2 — Libre Baskerville (títulos) + Inter (texto) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+/* ============ BASE ============ */
+:root{
+  --ink:#0b0c0d; --ink-2:#131416; --ink-3:#1b1d20;
+  --orange:#c8500f; --orange-2:#e06a2b; --red:#c22b2b;
+  --tan:#e9c58c;
+  --paper:#f6f5f3; --white:#ffffff;
+  --text:#43464a; --muted:#8b8d92; --line:#e6e4e0;
+  --fh:'Libre Baskerville',serif; /* títulos */
+  --fb:'Inter',sans-serif;        /* texto/UI */
+  --logo-h:68px; /* ✏️ LOGO SIZE (desktop) */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px;background:#fff;overscroll-behavior-y:none}
+body{font-family:var(--fb);color:var(--text);background:var(--white);font-size:16px;line-height:1.7;overflow-x:hidden;overscroll-behavior-y:none}
+/* FIX SCROLL: bloqueia só o scroll lateral, sem travar o vertical */
+html,body{overflow-x:clip}
+@supports not (overflow-x:clip){body{overflow-x:hidden}}
+::selection{background:var(--orange);color:#fff}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--fh);color:var(--ink);line-height:1.2;letter-spacing:0}
+.container{width:min(1200px,92%);margin:0 auto}
+section{padding:96px 0}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:15px 28px;border-radius:2px;transition:.3s;cursor:pointer;border:0;white-space:nowrap}
+.btn i{transition:.3s}
+.btn:hover i{transform:translateX(5px)}
+.btn-solid{background:var(--orange);color:#fff}
+.btn-solid:hover{background:var(--orange-2)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+
+/* ============ LANGUAGE SWITCHER ============ */
+.lang{display:flex;align-items:center;border:1px solid #3a3d42;border-radius:3px;overflow:hidden;flex:none;background:transparent}
+.lang button{background:none;border:0;font-family:var(--fb);font-weight:700;font-size:11px;letter-spacing:.08em;padding:8px 13px;cursor:pointer;color:#9aa0a6;transition:.25s}
+.lang button.active{background:var(--orange);color:#fff}
+.lang button:not(.active):hover{color:#fff}
+.tb-right .lang{margin-left:6px}
+.header-actions{display:flex;align-items:center;gap:12px;flex:none;margin-left:auto}
+@media(min-width:1181px){.header-actions{display:none}}
+
+/* ============ TOPBAR (hidden on mobile) ============ */
+.topbar{background:#08090b;color:#b9bbbe;font-size:12.5px;padding:9px 0}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar a,.topbar span{display:inline-flex;align-items:center;gap:7px;margin-right:22px}
+.topbar i{color:var(--orange-2)}
+.topbar a:hover{color:#fff}
+.tb-right .soc{margin:0 0 0 10px;width:26px;height:26px;border:1px solid #33363a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.tb-right .soc:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+
+/* ============ HEADER (escuro p/ logo branco) ============ */
+#header{position:sticky;top:0;z-index:900;background:#101114;transition:.3s;border-bottom:1px solid rgba(255,255,255,.07)}
+#header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:96px;gap:16px}
+.brand{display:flex;align-items:center;flex:none}
+.brand-logo{height:var(--logo-h);width:auto;max-width:none;flex:none;display:block}
+#nav{display:flex;align-items:center;gap:16px}
+#nav a.nl{font-family:var(--fb);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b9bdc3;padding:8px 0;position:relative;white-space:nowrap}
+#nav a.nl:hover{color:#fff}
+#nav a.nl::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--orange);transition:.3s}
+#nav a.nl:hover::after,#nav a.nl.active::after{width:100%}
+#nav a.nl.active{color:var(--orange-2)}
+#nav .btn{padding:12px 18px;margin-left:4px}
+#menuBtn{display:none;background:none;border:0;font-size:24px;color:#fff;cursor:pointer}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;
+  background:linear-gradient(90deg,rgba(8,9,10,.93) 0%,rgba(8,9,10,.72) 45%,rgba(8,9,10,.25) 100%),url('assets/img/hero.jpg') center/cover no-repeat;}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(transparent,rgba(8,9,10,.55));pointer-events:none}
+.hero-content{max-width:720px;padding:80px 0}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tan);border:1px solid rgba(233,197,140,.4);padding:8px 16px;border-radius:2px;margin-bottom:26px}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:700;color:#fff}
+.hero h1 .accent{color:var(--orange-2)}
+.hero .divider{width:70px;height:3px;background:var(--orange);margin:26px 0}
+.hero p{font-size:clamp(16px,1.6vw,20px);color:#e8e8e8;max-width:560px}
+.hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap}
+
+/* ============ FEATURE STRIP ============ */
+.features{background:var(--ink-2);padding:44px 0}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.feature{display:flex;gap:16px;padding-left:22px;border-left:1px solid #2b2e32}
+.feature i{font-size:26px;color:var(--orange-2);margin-top:4px}
+.feature h4{font-family:var(--fb);color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.feature p{font-size:13px;color:#9a9da1}
+
+/* ============ SECTION HEADS ============ */
+.overline{display:inline-block;color:var(--orange);font-family:var(--fb);font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px}
+.sec-head h2{font-size:clamp(28px,3.4vw,42px);font-weight:700}
+.sec-head .lead{color:var(--muted);max-width:640px;margin-top:14px}
+.sec-head.center{text-align:center}
+.sec-head.center .lead{margin-left:auto;margin-right:auto}
+
+/* ============ ABOUT ============ */
+.about{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.about-img{position:relative}
+.about-img img{border-radius:3px;box-shadow:0 24px 60px rgba(0,0,0,.18);width:100%;height:auto}
+.about-img .exp{position:absolute;right:-18px;bottom:-24px;background:var(--orange);color:#fff;padding:22px 26px;border-radius:3px;text-align:center;box-shadow:0 16px 40px rgba(200,80,15,.4)}
+.about-img .exp strong{font-family:var(--fh);font-size:34px;font-weight:700;display:block;line-height:1}
+.about-img .exp span{font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.about-copy p{margin:14px 0}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin:24px 0 30px}
+.checks li{display:flex;gap:10px;font-size:14.5px;font-weight:500;color:#33363a}
+.checks i{color:var(--orange);margin-top:4px}
+.link-more{font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);display:inline-flex;gap:10px;align-items:center}
+.link-more:hover{color:var(--orange-2)}
+.stats{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;background:transparent;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;padding:38px 0}
+.stat{text-align:center;position:relative}
+.stat + .stat::before{content:"";position:absolute;left:-14px;top:10%;height:80%;width:1px;background:var(--line)}
+.stat i{font-size:26px;color:var(--orange);margin-bottom:12px}
+.stat .num{font-family:var(--fh);font-size:clamp(28px,2.8vw,40px);font-weight:700;color:var(--ink);display:block}
+.stat .num::after{content:attr(data-suffix);color:var(--orange-2)}
+.stat small{font-family:var(--fb);color:var(--muted);font-size:13px}
+
+/* ============ CLIENTS ============ */
+.clients{background:#efeeec;padding:34px 0;border-block:1px solid var(--line)}
+.clients h5{text-align:center;font-family:var(--fb);font-size:11.5px;font-weight:700;letter-spacing:.22em;color:#7c7e82;text-transform:uppercase;margin-bottom:22px}
+.marquee{overflow:hidden;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,#efeeec,transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg,#efeeec,transparent)}
+.marquee-track{display:flex;gap:70px;width:max-content;animation:scrollX 32s linear infinite;align-items:center}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--fb);font-weight:700;font-size:17px;color:#9a9da1;white-space:nowrap;letter-spacing:.04em}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:3px;padding:38px 32px;position:relative;overflow:hidden;transition:.35s}
+.svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:.35s}
+.svc:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.08)}
+.svc:hover::before{transform:scaleX(1)}
+.svc .ico{color:var(--orange);font-size:26px;margin-bottom:14px}
+.svc h3{font-size:21px;font-weight:700;margin-bottom:10px}
+.svc p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
+.svc ul li{font-size:14px;padding:6px 0;display:flex;gap:10px;color:#3a3d41;border-top:1px dashed var(--line)}
+.svc ul li i{color:var(--orange);font-size:12px;margin-top:5px}
+
+/* ============ PROCESS ============ */
+.process{background:var(--ink-2);color:#fff}
+.process .sec-head h2{color:#fff}
+.process .sec-head .lead{color:#9a9da1}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px}
+.step{background:var(--ink-3);border:1px solid #26292d;border-radius:3px;padding:34px 26px;position:relative;transition:.3s}
+.step:hover{border-color:var(--orange);transform:translateY(-4px)}
+.step .n{font-family:var(--fh);font-size:44px;font-weight:700;color:transparent;-webkit-text-stroke:1px var(--orange);display:block;margin-bottom:14px}
+.step h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:10px}
+.step p{font-family:var(--fb);font-size:13.5px;color:#9a9da1}
+
+/* ============ PROJECTS ============ */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.proj{border-radius:0;overflow:hidden;background:#fff;border:1px solid var(--line);transition:.35s}
+.proj:hover{box-shadow:0 14px 34px rgba(0,0,0,.1);transform:translateY(-4px)}
+.proj .thumb{position:relative;height:230px;overflow:hidden}
+.proj .thumb img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.proj:hover .thumb img{transform:scale(1.06)}
+.proj .tag{position:absolute;top:16px;left:16px;background:var(--orange);color:#fff;font-family:var(--fb);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:2px}
+.proj .body{padding:28px}
+.proj h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.proj p{font-size:14px;color:var(--muted);margin-bottom:16px}
+.proj .meta{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:6px;font-family:var(--fb);font-size:12px;color:#6a6d71}
+.proj .meta i{color:var(--orange);width:16px}
+
+/* ============ EQUIPMENT ============ */
+.equipment{background:var(--ink);color:#fff}
+.equipment .sec-head h2{color:#fff}
+.equipment .sec-head .lead{color:#9a9da1}
+.eq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px}
+.eq{background:var(--ink-2);border:1px solid #26292d;border-radius:3px;padding:28px 22px;text-align:center;transition:.3s}
+.eq:hover{border-color:var(--orange);transform:translateY(-4px)}
+.eq i{font-size:28px;color:var(--orange-2);margin-bottom:14px}
+.eq h4{color:#fff;font-size:16px;font-weight:700;margin-bottom:6px}
+.eq p{font-family:var(--fb);font-size:12px;color:#8f9296}
+
+/* ============ LABORATORY ============ */
+.lab{background:var(--paper)}
+.lab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.lab-grid img{border-radius:3px;box-shadow:0 24px 60px rgba(0,0,0,.16);width:100%;height:auto}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:2px;padding:8px 18px;font-family:var(--fb);font-size:13px;font-weight:500;color:#3a3d41;transition:.25s}
+.chips span:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.lab-note{display:flex;gap:26px;margin-top:26px}
+.lab-note div{flex:1;min-width:0;background:#fff;border:1px solid var(--line);border-radius:3px;padding:18px}
+.lab-note strong{font-family:var(--fh);color:var(--ink);font-size:22px;font-weight:700;display:block}
+.lab-note small{font-family:var(--fb);color:var(--muted)}
+
+/* ============ CAREERS ============ */
+.careers{background:var(--ink-2);color:#fff}
+.careers .sec-head h2{color:#fff}
+.careers .sec-head .lead{color:#9a9da1}
+.jobs{margin-top:48px;border-top:1px solid #26292d}
+.job{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 10px;border-bottom:1px solid #26292d;transition:.25s}
+.job:hover{background:var(--ink-3);padding-left:22px}
+.job h4{color:#fff;font-size:18px;font-weight:700;margin-bottom:4px}
+.job small{font-family:var(--fb);color:#9a9da1;font-size:12px}
+.job small i{color:var(--orange-2);margin-right:6px}
+.job .btn{padding:11px 20px}
+
+/* ============ CTA BAND ============ */
+.cta-band{background:var(--ink-2);color:#fff;padding:70px 0}
+.cta-inner{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.cta-inner h2{color:#fff;font-size:clamp(24px,3vw,36px);font-weight:700}
+.cta-inner p{color:rgba(255,255,255,.85)}
+.cta-inner .btn{background:var(--orange);color:#fff}
+.cta-inner .btn:hover{background:var(--orange-2);color:#fff}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;margin-top:56px}
+.c-info{display:grid;gap:18px}
+.c-card{display:flex;gap:18px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:24px}
+.c-card i{width:48px;height:48px;flex:none;border-radius:3px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+.c-card strong{font-family:var(--fb);color:var(--ink);font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block}
+.c-card a,.c-card span{color:var(--muted);font-size:14px}
+.c-card a:hover{color:var(--orange)}
+form{background:var(--ink-2);border-radius:3px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+form h3{grid-column:1/-1;color:#fff;font-size:24px;font-weight:700}
+form .full{grid-column:1/-1}
+form label{display:block;font-family:var(--fb);color:#9a9da1;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:7px}
+form input,form select,form textarea{width:100%;background:var(--ink-3);border:1px solid #2b2e32;border-radius:2px;color:#fff;padding:13px 15px;font-family:var(--fb);font-size:14px;transition:.25s}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--orange)}
+form textarea{resize:vertical;min-height:120px}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#9a9da1;padding:70px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:54px}
+.foot-grid h4{font-family:var(--fb);color:#fff;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+.foot-grid p,.foot-grid li{font-size:13.5px}
+.foot-grid li{margin-bottom:10px}
+.foot-grid li a:hover{color:var(--orange-2)}
+.foot-grid li i{color:var(--orange);width:18px}
+.foot-brand{margin-bottom:18px}
+.foot-brand img{height:52px;width:auto;background:none;padding:0}
+.socials{display:flex;gap:10px;margin-top:20px}
+.socials a{width:36px;height:36px;border:1px solid #2b2e32;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9a9da1;transition:.3s}
+.socials a:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.foot-bottom{border-top:1px solid #1e2124;padding:22px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px}
+.foot-bottom em{color:var(--tan);font-style:normal}
+
+/* ============ UTILITIES ============ */
+#toTop{position:fixed;right:26px;bottom:26px;width:48px;height:48px;border-radius:3px;background:var(--orange);color:#fff;border:0;font-size:17px;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:950;box-shadow:0 12px 30px rgba(200,80,15,.4)}
+#toTop.show{opacity:1;visibility:visible}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============ RESPONSIVE: TABLET ============ */
+@media(max-width:1180px){
+  .topbar{display:none}
+  .header-inner{height:82px}
+  .brand-logo{height:58px}
+  #nav{position:fixed;inset:0 0 0 auto;width:min(360px,86%);background:var(--ink);flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:110px 36px;gap:22px;transform:translateX(100%);transition:.4s;z-index:940}
+  body.nav-open #nav{transform:none}
+  #nav a.nl{color:#e6e6e6;font-size:15px}
+  #menuBtn{display:block;z-index:960}
+  body.nav-open #menuBtn{color:#fff}
+  .features-grid,.steps,.eq-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid,.projects-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.lab-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3)::before{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+/* ============ RESPONSIVE: PHONE ============ */
+@media(max-width:640px){
+  section{padding:70px 0}
+  .brand-logo{height:50px}
+  .header-inner{height:74px;gap:10px}
+  .features-grid,.steps,.services-grid,.projects-grid{grid-template-columns:1fr}
+  .eq-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .eq{padding:20px 12px}
+  .eq i{font-size:22px}
+  .eq h4{font-size:14px}
+  .eq p{font-size:10.5px}
+  .stats{grid-template-columns:1fr 1fr;padding:30px 0}
+  .lab-note{flex-direction:column;gap:14px} /* cards do laboratório empilhados */
+  .lab-note div{padding:16px}
+  .chips span{padding:7px 14px;font-size:12px}
+  form{grid-template-columns:1fr;padding:30px 22px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:36px 22px} /* rodapé 2 colunas */
+  .foot-grid > div:first-child,.foot-grid > div:last-child{grid-column:1/-1}
+  footer{padding-top:50px}
+  .about-img .exp{right:8px}
+  .job{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ TOPBAR | ✏️ CONTACT ============ -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="tb-left">
+      <a href="mailto:contact@geocore.co.mz"><i class="fa-solid fa-envelope"></i> contact@geocore.co.mz</a> <!-- ✏️ EMAIL -->
+      <a href="tel:+258868639750"><i class="fa-solid fa-phone"></i> +258 86 863 9750</a> <!-- ✏️ PHONE -->
+    </div>
+    <div class="tb-right">
+      <span><i class="fa-solid fa-location-dot"></i> <span data-i18n="top.loc">Maputo, Mozambique</span></span>
+      <span><i class="fa-regular fa-clock"></i> <span data-i18n="top.hours">Mon - Fri: 07:00 - 17:00</span></span>
+      <!-- ✏️ REDES SOCIAIS (topbar): DESATIVADAS - a empresa ainda não tem redes.
+      <a class="soc" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      -->
+      <div class="lang" aria-label="Language">
+        <button data-lang-btn="en" class="active">EN</button>
+        <button data-lang-btn="pt">PT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER | ✏️ LOGO ============ -->
+<header id="header">
+  <div class="container header-inner">
+    <a class="brand" href="#top">
+      <img class="brand-logo" src="img/Logo.png" alt="GeoCore Engineering"> <!-- ✏️ LOGO (branco) -->
+    </a>
+    <nav id="nav">
+      <a class="nl active" href="#top" data-i18n="nav.home">Home</a>
+      <a class="nl" href="#about" data-i18n="nav.about">About Us</a>
+      <a class="nl" href="#services" data-i18n="nav.services">Services</a>
+      <a class="nl" href="#projects" data-i18n="nav.projects">Projects</a>
+      <a class="nl" href="#equipment" data-i18n="nav.equipment">Equipment</a>
+      <a class="nl" href="#laboratory" data-i18n="nav.lab">Laboratory</a>
+      <a class="nl" href="#careers" data-i18n="nav.careers">Careers</a>
+      <a class="nl" href="#contact" data-i18n="nav.contact">Contact</a>
+      <a class="btn btn-solid" href="#contact" data-i18n="nav.cta">Request a Proposal</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" aria-label="Language">
+        <button data-lang-btn="en" class="active">EN</button>
+        <button data-lang-btn="pt">PT</button>
+      </div>
+      <button id="menuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home" style="padding:0">
+  <div class="container hero-content">
+    <span class="badge"><i class="fa-solid fa-mountain-sun"></i> <span data-i18n="hero.badge">Geotechnical &amp; Foundation Engineering</span></span>
+    <h1 data-i18n-html="hero.title">Ground Intelligence<br><span class="accent">Engineered Solutions</span></h1>
+    <div class="divider"></div>
+    <p data-i18n="hero.lead">Geotechnical Investigation, Soil Testing and Foundation Engineering - delivering reliable subsurface data for critical infrastructure across Mozambique and Southern Africa</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#services"><span data-i18n="hero.b1">Our Services</span> <i class="fa-solid fa-arrow-right"></i></a>
+      <a class="btn btn-ghost" href="#contact"><span data-i18n="hero.b2">Request a Proposal</span> <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<div class="features">
+  <div class="container features-grid">
+    <div class="feature reveal"><i class="fa-solid fa-shield-halved"></i><div><h4 data-i18n="feat.1t">Safety &amp; Quality</h4><p data-i18n="feat.1p">Committed to the highest HSE and QA/QC standards in everything we do.</p></div></div>
+    <div class="feature reveal"><i class="fa-solid fa-bullseye"></i><div><h4 data-i18n="feat.2t">Accurate Results</h4><p data-i18n="feat.2p">Advanced equipment and proven methodologies, field to laboratory.</p></div></div>
+    <div class="feature reveal"><i class="fa-solid fa-users"></i><div><h4 data-i18n="feat.3t">Experienced Team</h4><p data-i18n="feat.3p">Qualified engineers and geotechnical specialists on every project.</p></div></div>
+    <div class="feature reveal"><i class="fa-solid fa-lightbulb"></i><div><h4 data-i18n="feat.4t">Smart Solutions</h4><p data-i18n="feat.4p">Practical, efficient and cost-effective engineering recommendations.</p></div></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="assets/img/about.jpg" alt="GeoCore engineers reviewing soil core samples">
+        <div class="exp"><strong>10+</strong><span data-i18n-html="about.exp">Years of<br>Experience</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="overline" data-i18n="about.over">About GeoCore</span>
+        <h2 style="font-size:clamp(28px,3.2vw,40px);font-weight:700" data-i18n-html="about.title">Engineering Confidence<br>From The Ground Up</h2>
+        <p data-i18n="about.p1">GeoCore Engineering is a specialist geotechnical engineering company delivering reliable subsurface data, technical analysis and engineering solutions for critical infrastructure projects throughout Mozambique and Southern Africa.</p>
+        <p data-i18n="about.p2">From field mobilization to final reporting, our integrated field, laboratory and engineering teams provide the accurate data and clear recommendations you can build on.</p>
+        <ul class="checks">
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.c1">Certified field &amp; laboratory teams</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.c2">ISO-aligned QA/QC procedures</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.c3">Rapid mobilization across the region</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.c4">HSE-first culture, 24/7 project support</span></li>
+        </ul>
+        <a class="link-more" href="#services"><span data-i18n="about.link">Learn More About Us</span> <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+    </div>
+    <!-- ✏️ STATS: numbers in data-target -->
+    <div class="stats reveal">
+      <div class="stat"><i class="fa-solid fa-briefcase"></i><span class="num" data-target="450" data-suffix="+">0</span><small data-i18n="stats.1">Projects Completed</small></div>
+      <div class="stat"><i class="fa-solid fa-arrows-down-to-line"></i><span class="num" data-target="150000" data-suffix="+">0</span><small data-i18n="stats.2">Meters Drilled</small></div>
+      <div class="stat"><i class="fa-solid fa-flask"></i><span class="num" data-target="12000" data-suffix="+">0</span><small data-i18n="stats.3">Laboratory Tests</small></div>
+      <div class="stat"><i class="fa-solid fa-award"></i><span class="num" data-target="10" data-suffix="+">0</span><small data-i18n="stats.4">Years of Experience</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTS ============ -->
+<div class="clients">
+  <h5 data-i18n="cli.head">Trusted by Industry Leaders</h5>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>SNC•LAVALIN</span><span>VALE</span><span>JICA</span><span>TOTAL</span><span>eni</span><span>AFCONS</span><span>MOTA-ENGIL</span><span>MILONGO</span><span>CDM Smith</span>
+      <span>SNC•LAVALIN</span><span>VALE</span><span>JICA</span><span>TOTAL</span><span>eni</span><span>AFCONS</span><span>MOTA-ENGIL</span><span>MILONGO</span><span>CDM Smith</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="overline" data-i18n="svc.over">Core Services</span>
+      <h2 data-i18n="svc.title">Complete Geotechnical Solutions</h2>
+      <p class="lead" data-i18n="svc.lead">Integrated investigation, testing and engineering services - from concept to construction</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <h3 data-i18n="svc1.t">Geotechnical Investigations</h3><p data-i18n="svc1.d">SPT, trial pits, sampling, field testing and full site characterization.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc1.1">SPT &amp; borehole logging</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc1.2">Trial pits &amp; test pitting</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc1.3">Soil &amp; rock sampling</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc1.4">In-situ testing (DCP, plate load)</span></li></ul>
+      </div>
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-arrows-down-to-line"></i></div>
+        <h3 data-i18n="svc2.t">Drilling Services</h3><p data-i18n="svc2.d">Core drilling, rotary drilling, boreholes and geotechnical exploration.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc2.1">Rotary &amp; core drilling (HQ/NQ)</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc2.2">Boreholes to 100+ m depth</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc2.3">Geotechnical exploration</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc2.4">Monitoring well installation</span></li></ul>
+      </div>
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-flask"></i></div>
+        <h3 data-i18n="svc3.t">Laboratory Testing</h3><p data-i18n="svc3.d">CBR, Proctor, Atterberg limits, compaction and classification tests.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc3.1">CBR &amp; Proctor compaction</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc3.2">Atterberg limits &amp; classification</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc3.3">Moisture content &amp; density</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc3.4">Particle size distribution</span></li></ul>
+      </div>
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-layer-group"></i></div>
+        <h3 data-i18n="svc4.t">Foundation Engineering</h3><p data-i18n="svc4.d">Foundation recommendations and ground improvement solutions.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc4.1">Shallow &amp; deep foundation design</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc4.2">Pile design &amp; verification</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc4.3">Ground improvement</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc4.4">Slope stability analysis</span></li></ul>
+      </div>
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-water"></i></div>
+        <h3 data-i18n="svc5.t">Hydrogeology</h3><p data-i18n="svc5.d">Groundwater investigations and monitoring for any terrain.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc5.1">Pumping &amp; slug tests</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc5.2">Groundwater monitoring</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc5.3">Dewatering design</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc5.4">Water quality sampling</span></li></ul>
+      </div>
+      <div class="svc reveal"><div class="ico"><i class="fa-solid fa-file-lines"></i></div>
+        <h3 data-i18n="svc6.t">Geotechnical Consulting</h3><p data-i18n="svc6.d">Reports, reviews and engineering support you can rely on.</p>
+        <ul><li><i class="fa-solid fa-check"></i><span data-i18n="svc6.1">Geotechnical interpretive reports</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc6.2">Design reviews &amp; peer checks</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc6.3">Construction supervision</span></li><li><i class="fa-solid fa-check"></i><span data-i18n="svc6.4">Expert engineering support</span></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="overline" data-i18n="proc.over">How We Work</span>
+      <h2 data-i18n="proc.title">From Field to Final Report</h2>
+      <p class="lead" data-i18n="proc.lead">A proven four-step delivery model that keeps quality, safety and schedule under control</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="n">01</span><h3 data-i18n="proc1.t">Scope &amp; Mobilization</h3><p data-i18n="proc1.p">Proposal, work plan, HSE preparation and rapid mobilization of rigs and teams to site.</p></div>
+      <div class="step reveal"><span class="n">02</span><h3 data-i18n="proc2.t">Field Investigation</h3><p data-i18n="proc2.p">Drilling, SPT, trial pits, sampling and in-situ testing performed by certified crews.</p></div>
+      <div class="step reveal"><span class="n">03</span><h3 data-i18n="proc3.t">Laboratory Testing</h3><p data-i18n="proc3.p">Controlled testing with QA/QC checks and fast, traceable turnaround of results.</p></div>
+      <div class="step reveal"><span class="n">04</span><h3 data-i18n="proc4.t">Analysis &amp; Reporting</h3><p data-i18n="proc4.p">Engineering analysis, foundation recommendations and a clear interpretive report.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS (6: inclui Oil & Gas e Mineração) ============ -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="overline" data-i18n="proj.over">Featured Projects</span>
+      <h2 data-i18n="proj.title">Proven Delivery, Real Results</h2>
+      <p class="lead" data-i18n="proj.lead">A selection of recent work across transport, commercial, mining and oil &amp; gas sectors</p>
+    </div>
+    <div class="projects-grid">
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-road.jpg" alt="Road infrastructure investigation"><span class="tag" data-i18n="proj1.tag">Road Infrastructure</span></div>
+        <div class="body"><h3 data-i18n="proj1.t">N4 Transport Corridor Upgrade</h3>
+          <p data-i18n="proj1.d">Detailed geotechnical investigations for transport corridors, including embankment characterization and borrow pit evaluation.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj1.loc">Maputo Province, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj1.meta">42 boreholes • CBR/Proctor • pavement recommendations</span></span></div>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-commercial.jpg" alt="Commercial development site investigation"><span class="tag" data-i18n="proj2.tag">Commercial Development</span></div>
+        <div class="body"><h3 data-i18n="proj2.t">Maputo Logistics &amp; Commercial Hub</h3>
+          <p data-i18n="proj2.d">Site investigations and foundation recommendations for a 25,000 m² warehouse and office complex on soft soils.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj2.loc">Maputo City, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj2.meta">18 boreholes • foundation design • settlement analysis</span></span></div>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-mining.jpg" alt="Mining exploration support"><span class="tag" data-i18n="proj3.tag">Mining Projects</span></div>
+        <div class="body"><h3 data-i18n="proj3.t">Tete Coal Exploration Support</h3>
+          <p data-i18n="proj3.d">Exploration support and subsurface characterization for mine infrastructure and haul road design.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj3.loc">Tete Province, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj3.meta">120+ boreholes • overburden characterization • monitoring</span></span></div>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-oilgas.jpg" alt="LNG support base site investigation"><span class="tag" data-i18n="proj4.tag">Oil &amp; Gas</span></div>
+        <div class="body"><h3 data-i18n="proj4.t">Cabo Delgado LNG Support Base</h3>
+          <p data-i18n="proj4.d">Coastal site investigation and ground improvement for an LNG logistics support base, including boreholes in coral sands and fill design.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj4.loc">Cabo Delgado Province, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj4.meta">30 boreholes • coastal geotechnics • fill design</span></span></div>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-pipeline.jpg" alt="Gas pipeline corridor investigation"><span class="tag" data-i18n="proj5.tag">Oil &amp; Gas</span></div>
+        <div class="body"><h3 data-i18n="proj5.t">Rovuma Gas Pipeline Corridor</h3>
+          <p data-i18n="proj5.d">Route investigation and trenchability assessment along a 40 km gas pipeline corridor, with crossing designs and soil corrosivity testing.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj5.loc">Rovuma Basin, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj5.meta">40 km route • trenchability • corrosivity testing</span></span></div>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="thumb"><img src="assets/img/project-mining2.jpg" alt="Graphite mine geotechnical investigation"><span class="tag" data-i18n="proj6.tag">Mining</span></div>
+        <div class="body"><h3 data-i18n="proj6.t">Balama Graphite Mine Investigation</h3>
+          <p data-i18n="proj6.d">Subsurface characterization and haul road geotechnics for a graphite development, including waste dump stability analysis.</p>
+          <div class="meta"><span><i class="fa-solid fa-location-dot"></i> <span data-i18n="proj6.loc">Cabo Delgado Province, Mozambique</span></span><span><i class="fa-solid fa-list-check"></i> <span data-i18n="proj6.meta">60 boreholes • haul roads • dump stability</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT ============ -->
+<section class="equipment" id="equipment">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="overline" data-i18n="eq.over">Our Fleet</span>
+      <h2 data-i18n="eq.title">Equipment &amp; Capabilities</h2>
+      <p class="lead" data-i18n="eq.lead">Modern, maintained and mobilized - ready for remote and challenging sites</p>
+    </div>
+    <div class="eq-grid">
+      <div class="eq reveal"><i class="fa-solid fa-truck"></i><h4 data-i18n="eq1.t">Rotary Drilling Rigs</h4><p data-i18n="eq1.p">Tracked rigs, 150 - 300 m capacity</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-gears"></i><h4 data-i18n="eq2.t">Core Drilling Rigs</h4><p data-i18n="eq2.p">HQ / NQ / T2-66 core barrels</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-hammer"></i><h4 data-i18n="eq3.t">SPT Equipment</h4><p data-i18n="eq3.p">Standard &amp; automatic hammers</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-gauge-high"></i><h4 data-i18n="eq4.t">DCP &amp; Plate Load</h4><p data-i18n="eq4.p">In-situ strength testing sets</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-tractor"></i><h4 data-i18n="eq5.t">Trial Pit Excavators</h4><p data-i18n="eq5.p">Support fleet for test pitting</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-droplet"></i><h4 data-i18n="eq6.t">Piezometers</h4><p data-i18n="eq6.p">Groundwater monitoring instruments</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-ruler-combined"></i><h4 data-i18n="eq7.t">Survey Equipment</h4><p data-i18n="eq7.p">Total stations &amp; GPS leveling</p></div>
+      <div class="eq reveal"><i class="fa-solid fa-toolbox"></i><h4 data-i18n="eq8.t">Field Laboratories</h4><p data-i18n="eq8.p">Mobile testing &amp; sampling kits</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LABORATORY ============ -->
+<section class="lab" id="laboratory">
+  <div class="container lab-grid">
+    <img class="reveal" src="assets/img/lab.jpg" alt="GeoCore geotechnical laboratory">
+    <div class="reveal">
+      <span class="overline" data-i18n="lab.over">In-House Laboratory</span>
+      <h2 style="font-size:clamp(28px,3.2vw,40px);font-weight:700" data-i18n-html="lab.title">Precision Testing,<br>Traceable Results</h2>
+      <p style="margin-top:14px" data-i18n="lab.p">Our Maputo laboratory performs the full range of soil and material tests required for geotechnical design, with calibrated equipment and strict QA/QC control.</p>
+      <div class="chips">
+        <span data-i18n="chip.1">CBR</span><span data-i18n="chip.2">Proctor Compaction</span><span data-i18n="chip.3">Atterberg Limits</span><span data-i18n="chip.4">Particle Size Distribution</span><span data-i18n="chip.5">Classification</span><span data-i18n="chip.6">Moisture Content</span><span data-i18n="chip.7">Specific Gravity</span><span data-i18n="chip.8">Unconfined Compression</span><span data-i18n="chip.9">Point Load</span><span data-i18n="chip.10">Triaxial</span><span data-i18n="chip.11">Consolidation</span>
+      </div>
+      <div class="lab-note">
+        <div><strong data-i18n="lab.n1s">5 - 7 days</strong><small data-i18n="lab.n1p">Average test turnaround</small></div>
+        <div><strong data-i18n="lab.n2s">QA/QC</strong><small data-i18n="lab.n2p">Calibrated &amp; controlled procedures</small></div>
+        <div><strong data-i18n="lab.n3s">12,000+</strong><small data-i18n="lab.n3p">Tests completed to date</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAREERS ============ -->
+<section class="careers" id="careers">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="overline" data-i18n="car.over">Careers</span>
+      <h2 data-i18n="car.title">Build Your Career From The Ground Up</h2>
+      <p class="lead" data-i18n="car.lead">Join a team of engineers, drillers and technicians who take pride in precise data and safe sites</p>
+    </div>
+    <div class="jobs reveal">
+      <div class="job"><div><h4 data-i18n="car1.t">Geotechnical Engineer</h4><small><i class="fa-solid fa-location-dot"></i><span data-i18n="car1.m">Maputo • Full-time</span></small></div><a class="btn btn-solid" data-i18n-href="car1.href" href="mailto:contact@geocore.co.mz?subject=Application%20-%20Geotechnical%20Engineer"><span data-i18n="car.apply">Apply</span> <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="job"><div><h4 data-i18n="car2.t">Drilling Foreman</h4><small><i class="fa-solid fa-location-dot"></i><span data-i18n="car2.m">Field Operations • Full-time</span></small></div><a class="btn btn-solid" data-i18n-href="car2.href" href="mailto:contact@geocore.co.mz?subject=Application%20-%20Drilling%20Foreman"><span data-i18n="car.apply">Apply</span> <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="job"><div><h4 data-i18n="car3.t">Laboratory Technician</h4><small><i class="fa-solid fa-location-dot"></i><span data-i18n="car3.m">Maputo • Full-time</span></small></div><a class="btn btn-solid" data-i18n-href="car3.href" href="mailto:contact@geocore.co.mz?subject=Application%20-%20Laboratory%20Technician"><span data-i18n="car.apply">Apply</span> <i class="fa-solid fa-arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<div class="cta-band">
+  <div class="container cta-inner reveal">
+    <div><h2 data-i18n="cta.t">Have a project in mind?</h2><p data-i18n="cta.p">Get a technical proposal within 48 hours.</p></div>
+    <a class="btn" href="#contact"><span data-i18n="cta.b">Request a Proposal</span> <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<!-- ============ CONTACT | ✏️ CONTACT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="overline" data-i18n="con.over">Contact Us</span>
+      <h2 data-i18n="con.title">Let's Discuss Your Project</h2>
+      <p class="lead" data-i18n="con.lead">Tell us about your site and scope - our engineering team will respond promptly</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c-info reveal">
+        <div class="c-card"><i class="fa-solid fa-envelope"></i><div><strong data-i18n="con.email">Email</strong><a href="mailto:contact@geocore.co.mz">contact@geocore.co.mz</a></div></div> <!-- ✏️ EMAIL -->
+        <div class="c-card"><i class="fa-solid fa-phone"></i><div><strong data-i18n="con.phone">Phone</strong><a href="tel:+258868639750">+258 86 863 9750</a></div></div> <!-- ✏️ PHONE -->
+        <div class="c-card"><i class="fa-solid fa-location-dot"></i><div><strong data-i18n="con.loc">Location</strong><span data-i18n="con.locV">Maputo, Mozambique</span></div></div>
+        <div class="c-card"><i class="fa-regular fa-clock"></i><div><strong data-i18n="con.hours">Working Hours</strong><span data-i18n="con.hoursV">Monday - Friday, 07:00 - 17:00</span></div></div>
+      </div>
+      <!-- ✏️ WEB3FORMS: HTML stays; only FORM_CONFIG changes -->
+      <form id="proposalForm" class="reveal">
+        <h3 data-i18n="form.title">Request a Proposal</h3>
+        <div><label for="fName" data-i18n="form.name">Full Name</label><input id="fName" name="name" type="text" data-i18n-ph="form.phName" placeholder="Your name" required></div>
+        <div><label for="fEmail" data-i18n="form.email">Email</label><input id="fEmail" name="email" type="email" data-i18n-ph="form.phEmail" placeholder="you@company.com" required></div>
+        <div><label for="fPhone" data-i18n="form.phone">Phone</label><input id="fPhone" name="phone" type="tel" data-i18n-ph="form.phPhone" placeholder="+258 ..."></div>
+        <div><label for="fService" data-i18n="form.service">Service Needed</label>
+          <select id="fService" name="service">
+            <option data-i18n="form.o1">Geotechnical Investigation</option>
+            <option data-i18n="form.o2">Drilling Services</option>
+            <option data-i18n="form.o3">Laboratory Testing</option>
+            <option data-i18n="form.o4">Foundation Engineering</option>
+            <option data-i18n="form.o5">Hydrogeology</option>
+            <option data-i18n="form.o6">Consulting / Other</option>
+          </select>
+        </div>
+        <div class="full"><label for="fMsg" data-i18n="form.msg">Project Details</label><textarea id="fMsg" name="message" data-i18n-ph="form.phMsg" placeholder="Site location, scope, timeline..." required></textarea></div>
+        <div class="full"><button class="btn btn-solid" type="submit" style="width:100%;justify-content:center"><span data-i18n="form.send">Send Request</span> <i class="fa-solid fa-paper-plane"></i></button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="img/Logo.png" alt="GeoCore Engineering"></div>
+        <p data-i18n="foot.desc">Specialist geotechnical engineering delivering reliable subsurface data, technical analysis and engineered solutions for infrastructure, mining and industrial developments.</p>
+        <!-- ✏️ REDES SOCIAIS: DESATIVADAS - a empresa ainda não tem redes.
+        <div class="socials">
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        -->
+      </div>
+      <div>
+        <h4 data-i18n="foot.ql">Quick Links</h4>
+        <ul><li><a href="#about" data-i18n="nav.about">About Us</a></li><li><a href="#services" data-i18n="nav.services">Services</a></li><li><a href="#projects" data-i18n="nav.projects">Projects</a></li><li><a href="#equipment" data-i18n="nav.equipment">Equipment</a></li><li><a href="#laboratory" data-i18n="nav.lab">Laboratory</a></li><li><a href="#careers" data-i18n="nav.careers">Careers</a></li></ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.svc">Services</h4>
+        <ul><li data-i18n="svc1.t">Geotechnical Investigations</li><li data-i18n="svc2.t">Drilling Services</li><li data-i18n="svc3.t">Laboratory Testing</li><li data-i18n="svc4.t">Foundation Engineering</li><li data-i18n="svc5.t">Hydrogeology</li><li data-i18n="svc6.t">Geotechnical Consulting</li></ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.con">Contact</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> <span data-i18n="con.locV">Maputo, Mozambique</span></li>
+          <li><i class="fa-solid fa-phone"></i> +258 86 863 9750</li> <!-- ✏️ PHONE -->
+          <li><i class="fa-solid fa-envelope"></i> contact@geocore.co.mz</li> <!-- ✏️ EMAIL -->
+        </ul>
+        <p style="margin-top:14px"><em data-i18n="foot.tag">Building confidence from the ground up.</em></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot.rights">© 2026 GeoCore Engineering. All Rights Reserved.</span>
+      <span data-i18n-html="foot.slogan">Ground Intelligence <em>Engineered Solutions</em></span>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+/* ============================================================
+   ✏️ I18N — ALL TEXTS / TRADUÇÕES (edit here)
+   ============================================================ */
+const I18N={
+en:{
+"meta.title":"GeoCore Engineering | Geotechnical & Foundation Engineering",
+"nav.home":"Home","nav.about":"About Us","nav.services":"Services","nav.projects":"Projects","nav.equipment":"Equipment","nav.lab":"Laboratory","nav.careers":"Careers","nav.contact":"Contact","nav.cta":"Request a Proposal",
+"top.loc":"Maputo, Mozambique","top.hours":"Mon - Fri: 07:00 - 17:00",
+"hero.badge":"Geotechnical & Foundation Engineering","hero.title":"Ground Intelligence<br><span class=\"accent\">Engineered Solutions</span>","hero.lead":"Geotechnical Investigation, Soil Testing and Foundation Engineering - delivering reliable subsurface data for critical infrastructure across Mozambique and Southern Africa","hero.b1":"Our Services","hero.b2":"Request a Proposal",
+"feat.1t":"Safety & Quality","feat.1p":"Committed to the highest HSE and QA/QC standards in everything we do.","feat.2t":"Accurate Results","feat.2p":"Advanced equipment and proven methodologies, field to laboratory.","feat.3t":"Experienced Team","feat.3p":"Qualified engineers and geotechnical specialists on every project.","feat.4t":"Smart Solutions","feat.4p":"Practical, efficient and cost-effective engineering recommendations.",
+"about.over":"About GeoCore","about.title":"Engineering Confidence<br>From The Ground Up","about.p1":"GeoCore Engineering is a specialist geotechnical engineering company delivering reliable subsurface data, technical analysis and engineering solutions for critical infrastructure projects throughout Mozambique and Southern Africa.","about.p2":"From field mobilization to final reporting, our integrated field, laboratory and engineering teams provide the accurate data and clear recommendations you can build on.","about.c1":"Certified field & laboratory teams","about.c2":"ISO-aligned QA/QC procedures","about.c3":"Rapid mobilization across the region","about.c4":"HSE-first culture, 24/7 project support","about.link":"Learn More About Us","about.exp":"Years of<br>Experience",
+"stats.1":"Projects Completed","stats.2":"Meters Drilled","stats.3":"Laboratory Tests","stats.4":"Years of Experience",
+"cli.head":"Trusted by Industry Leaders",
+"svc.over":"Core Services","svc.title":"Complete Geotechnical Solutions","svc.lead":"Integrated investigation, testing and engineering services - from concept to construction",
+"svc1.t":"Geotechnical Investigations","svc1.d":"SPT, trial pits, sampling, field testing and full site characterization.","svc1.1":"SPT & borehole logging","svc1.2":"Trial pits & test pitting","svc1.3":"Soil & rock sampling","svc1.4":"In-situ testing (DCP, plate load)",
+"svc2.t":"Drilling Services","svc2.d":"Core drilling, rotary drilling, boreholes and geotechnical exploration.","svc2.1":"Rotary & core drilling (HQ/NQ)","svc2.2":"Boreholes to 100+ m depth","svc2.3":"Geotechnical exploration","svc2.4":"Monitoring well installation",
+"svc3.t":"Laboratory Testing","svc3.d":"CBR, Proctor, Atterberg limits, compaction and classification tests.","svc3.1":"CBR & Proctor compaction","svc3.2":"Atterberg limits & classification","svc3.3":"Moisture content & density","svc3.4":"Particle size distribution",
+"svc4.t":"Foundation Engineering","svc4.d":"Foundation recommendations and ground improvement solutions.","svc4.1":"Shallow & deep foundation design","svc4.2":"Pile design & verification","svc4.3":"Ground improvement","svc4.4":"Slope stability analysis",
+"svc5.t":"Hydrogeology","svc5.d":"Groundwater investigations and monitoring for any terrain.","svc5.1":"Pumping & slug tests","svc5.2":"Groundwater monitoring","svc5.3":"Dewatering design","svc5.4":"Water quality sampling",
+"svc6.t":"Geotechnical Consulting","svc6.d":"Reports, reviews and engineering support you can rely on.","svc6.1":"Geotechnical interpretive reports","svc6.2":"Design reviews & peer checks","svc6.3":"Construction supervision","svc6.4":"Expert engineering support",
+"proc.over":"How We Work","proc.title":"From Field to Final Report","proc.lead":"A proven four-step delivery model that keeps quality, safety and schedule under control","proc1.t":"Scope & Mobilization","proc1.p":"Proposal, work plan, HSE preparation and rapid mobilization of rigs and teams to site.","proc2.t":"Field Investigation","proc2.p":"Drilling, SPT, trial pits, sampling and in-situ testing performed by certified crews.","proc3.t":"Laboratory Testing","proc3.p":"Controlled testing with QA/QC checks and fast, traceable turnaround of results.","proc4.t":"Analysis & Reporting","proc4.p":"Engineering analysis, foundation recommendations and a clear interpretive report.",
+"proj.over":"Featured Projects","proj.title":"Proven Delivery, Real Results","proj.lead":"A selection of recent work across transport, commercial, mining and oil & gas sectors","proj1.tag":"Road Infrastructure","proj1.t":"N4 Transport Corridor Upgrade","proj1.d":"Detailed geotechnical investigations for transport corridors, including embankment characterization and borrow pit evaluation.","proj1.loc":"Maputo Province, Mozambique","proj1.meta":"42 boreholes • CBR/Proctor • pavement recommendations","proj2.tag":"Commercial Development","proj2.t":"Maputo Logistics & Commercial Hub","proj2.d":"Site investigations and foundation recommendations for a 25,000 m² warehouse and office complex on soft soils.","proj2.loc":"Maputo City, Mozambique","proj2.meta":"18 boreholes • foundation design • settlement analysis","proj3.tag":"Mining Projects","proj3.t":"Tete Coal Exploration Support","proj3.d":"Exploration support and subsurface characterization for mine infrastructure and haul road design.","proj3.loc":"Tete Province, Mozambique","proj3.meta":"120+ boreholes • overburden characterization • monitoring","proj4.tag":"Oil & Gas","proj4.t":"Cabo Delgado LNG Support Base","proj4.d":"Coastal site investigation and ground improvement for an LNG logistics support base, including boreholes in coral sands and fill design.","proj4.loc":"Cabo Delgado Province, Mozambique","proj4.meta":"30 boreholes • coastal geotechnics • fill design","proj5.tag":"Oil & Gas","proj5.t":"Rovuma Gas Pipeline Corridor","proj5.d":"Route investigation and trenchability assessment along a 40 km gas pipeline corridor, with crossing designs and soil corrosivity testing.","proj5.loc":"Rovuma Basin, Mozambique","proj5.meta":"40 km route • trenchability • corrosivity testing","proj6.tag":"Mining","proj6.t":"Balama Graphite Mine Investigation","proj6.d":"Subsurface characterization and haul road geotechnics for a graphite development, including waste dump stability analysis.","proj6.loc":"Cabo Delgado Province, Mozambique","proj6.meta":"60 boreholes • haul roads • dump stability",
+"eq.over":"Our Fleet","eq.title":"Equipment & Capabilities","eq.lead":"Modern, maintained and mobilized - ready for remote and challenging sites","eq1.t":"Rotary Drilling Rigs","eq1.p":"Tracked rigs, 150 - 300 m capacity","eq2.t":"Core Drilling Rigs","eq2.p":"HQ / NQ / T2-66 core barrels","eq3.t":"SPT Equipment","eq3.p":"Standard & automatic hammers","eq4.t":"DCP & Plate Load","eq4.p":"In-situ strength testing sets","eq5.t":"Trial Pit Excavators","eq5.p":"Support fleet for test pitting","eq6.t":"Piezometers","eq6.p":"Groundwater monitoring instruments","eq7.t":"Survey Equipment","eq7.p":"Total stations & GPS leveling","eq8.t":"Field Laboratories","eq8.p":"Mobile testing & sampling kits",
+"lab.over":"In-House Laboratory","lab.title":"Precision Testing,<br>Traceable Results","lab.p":"Our Maputo laboratory performs the full range of soil and material tests required for geotechnical design, with calibrated equipment and strict QA/QC control.","chip.1":"CBR","chip.2":"Proctor Compaction","chip.3":"Atterberg Limits","chip.4":"Particle Size Distribution","chip.5":"Classification","chip.6":"Moisture Content","chip.7":"Specific Gravity","chip.8":"Unconfined Compression","chip.9":"Point Load","chip.10":"Triaxial","chip.11":"Consolidation","lab.n1s":"5 - 7 days","lab.n1p":"Average test turnaround","lab.n2s":"QA/QC","lab.n2p":"Calibrated & controlled procedures","lab.n3s":"12,000+","lab.n3p":"Tests completed to date",
+"car.over":"Careers","car.title":"Build Your Career From The Ground Up","car.lead":"Join a team of engineers, drillers and technicians who take pride in precise data and safe sites","car.apply":"Apply","car1.t":"Geotechnical Engineer","car1.m":"Maputo • Full-time","car1.href":"mailto:contact@geocore.co.mz?subject=Application%20-%20Geotechnical%20Engineer","car2.t":"Drilling Foreman","car2.m":"Field Operations • Full-time","car2.href":"mailto:contact@geocore.co.mz?subject=Application%20-%20Drilling%20Foreman","car3.t":"Laboratory Technician","car3.m":"Maputo • Full-time","car3.href":"mailto:contact@geocore.co.mz?subject=Application%20-%20Laboratory%20Technician",
+"cta.t":"Have a project in mind?","cta.p":"Get a technical proposal within 48 hours.","cta.b":"Request a Proposal",
+"con.over":"Contact Us","con.title":"Let's Discuss Your Project","con.lead":"Tell us about your site and scope - our engineering team will respond promptly","con.email":"Email","con.phone":"Phone","con.loc":"Location","con.locV":"Maputo, Mozambique","con.hours":"Working Hours","con.hoursV":"Monday - Friday, 07:00 - 17:00",
+"form.title":"Request a Proposal","form.name":"Full Name","form.email":"Email","form.phone":"Phone","form.service":"Service Needed","form.o1":"Geotechnical Investigation","form.o2":"Drilling Services","form.o3":"Laboratory Testing","form.o4":"Foundation Engineering","form.o5":"Hydrogeology","form.o6":"Consulting / Other","form.msg":"Project Details","form.phName":"Your name","form.phEmail":"you@company.com","form.phPhone":"+258 ...","form.phMsg":"Site location, scope, timeline...","form.send":"Send Request","form.subject":"Proposal Request - ","form.ok":"Request sent successfully! We will reply shortly.","form.err":"Error sending. Please try again or email us directly.",
+"foot.desc":"Specialist geotechnical engineering delivering reliable subsurface data, technical analysis and engineered solutions for infrastructure, mining and industrial developments.","foot.ql":"Quick Links","foot.svc":"Services","foot.con":"Contact","foot.tag":"Building confidence from the ground up.","foot.rights":"© 2026 GeoCore Engineering. All Rights Reserved.","foot.slogan":"Ground Intelligence <em>Engineered Solutions</em>"
+},
+pt:{
+"meta.title":"GeoCore Engenharia | Engenharia Geotécnica e de Fundações",
+"nav.home":"Início","nav.about":"Sobre Nós","nav.services":"Serviços","nav.projects":"Projetos","nav.equipment":"Equipamentos","nav.lab":"Laboratório","nav.careers":"Carreiras","nav.contact":"Contacto","nav.cta":"Pedir Proposta",
+"top.loc":"Maputo, Moçambique","top.hours":"Seg - Sex: 07:00 - 17:00",
+"hero.badge":"Engenharia Geotécnica e de Fundações","hero.title":"Ground Intelligence<br><span class=\"accent\">Engineered Solutions</span>","hero.lead":"Investigação Geotécnica, Ensaios de Solos e Engenharia de Fundações - dados fiáveis do subsolo para infraestruturas críticas em Moçambique e na África Austral","hero.b1":"Nossos Serviços","hero.b2":"Pedir uma Proposta",
+"feat.1t":"Segurança & Qualidade","feat.1p":"Compromisso com os mais altos padrões de HSE e QA/QC em tudo o que fazemos.","feat.2t":"Resultados Precisos","feat.2p":"Equipamento avançado e metodologias comprovadas, do campo ao laboratório.","feat.3t":"Equipa Experiente","feat.3p":"Engenheiros qualificados e especialistas geotécnicos em cada projeto.","feat.4t":"Soluções Inteligentes","feat.4p":"Recomendações de engenharia práticas, eficientes e económicas.",
+"about.over":"Sobre a GeoCore","about.title":"Engenharia com Confiança<br>Do Solo ao Topo","about.p1":"A GeoCore Engenharia é uma empresa especialista em engenharia geotécnica que fornece dados fiáveis do subsolo, análise técnica e soluções de engenharia para projetos de infraestruturas críticas em Moçambique e na África Austral.","about.p2":"Da mobilização de campo ao relatório final, as nossas equipas integradas de campo, laboratório e engenharia fornecem dados precisos e recomendações claras sobre as quais pode construir.","about.c1":"Equipas de campo e laboratório certificadas","about.c2":"Procedimentos QA/QC alinhados com ISO","about.c3":"Mobilização rápida em toda a região","about.c4":"Cultura HSE em primeiro lugar, apoio 24/7","about.link":"Saber Mais Sobre Nós","about.exp":"Anos de<br>Experiência",
+"stats.1":"Projetos Concluídos","stats.2":"Metros Perfurados","stats.3":"Ensaios de Laboratório","stats.4":"Anos de Experiência",
+"cli.head":"Com a Confiança de Líderes da Indústria",
+"svc.over":"Serviços Principais","svc.title":"Soluções Geotécnicas Completas","svc.lead":"Serviços integrados de investigação, ensaios e engenharia - do conceito à construção",
+"svc1.t":"Investigações Geotécnicas","svc1.d":"SPT, poços de reconhecimento, amostragem, ensaios de campo e caracterização completa do local.","svc1.1":"SPT e registo de furos","svc1.2":"Poços e valas de reconhecimento","svc1.3":"Amostragem de solos e rochas","svc1.4":"Ensaios in-situ (DCP, prova de carga)",
+"svc2.t":"Serviços de Perfuração","svc2.d":"Perfuração por rotação e carotagem, furos e exploração geotécnica.","svc2.1":"Perfuração rotativa e carotagem (HQ/NQ)","svc2.2":"Furos até 100+ m de profundidade","svc2.3":"Exploração geotécnica","svc2.4":"Instalação de poços de monitorização",
+"svc3.t":"Ensaios Laboratoriais","svc3.d":"CBR, Proctor, limites de Atterberg, compactação e classificação.","svc3.1":"CBR e compactação Proctor","svc3.2":"Limites de Atterberg e classificação","svc3.3":"Teor de humidade e densidade","svc3.4":"Distribuição granulométrica",
+"svc4.t":"Engenharia de Fundações","svc4.d":"Recomendações de fundações e soluções de melhoria do terreno.","svc4.1":"Fundações superficiais e profundas","svc4.2":"Projeto e verificação de estacas","svc4.3":"Melhoria do terreno","svc4.4":"Análise de estabilidade de taludes",
+"svc5.t":"Hidrogeologia","svc5.d":"Investigação e monitorização de águas subterrâneas em qualquer terreno.","svc5.1":"Ensaios de bombagem","svc5.2":"Monitorização de águas subterrâneas","svc5.3":"Projeto de rebaixamento do nível freático","svc5.4":"Amostragem de qualidade da água",
+"svc6.t":"Consultoria Geotécnica","svc6.d":"Relatórios, revisões e apoio de engenharia de confiança.","svc6.1":"Relatórios geotécnicos interpretativos","svc6.2":"Revisões de projeto e verificação","svc6.3":"Fiscalização de obra","svc6.4":"Apoio especializado de engenharia",
+"proc.over":"Como Trabalhamos","proc.title":"Do Campo ao Relatório Final","proc.lead":"Um modelo de entrega em quatro etapas que mantém a qualidade, a segurança e os prazos sob controlo","proc1.t":"Âmbito & Mobilização","proc1.p":"Proposta, plano de trabalhos, preparação HSE e mobilização rápida de sondas e equipas para a obra.","proc2.t":"Investigação de Campo","proc2.p":"Perfuração, SPT, poços, amostragem e ensaios in-situ realizados por equipas certificadas.","proc3.t":"Ensaios de Laboratório","proc3.p":"Ensaios controlados com verificações QA/QC e resultados rápidos e rastreáveis.","proc4.t":"Análise & Relatório","proc4.p":"Análise de engenharia, recomendações de fundações e um relatório interpretativo claro.",
+"proj.over":"Projetos em Destaque","proj.title":"Entrega Comprovada, Resultados Reais","proj.lead":"Uma seleção de trabalhos recentes nos setores de transportes, comercial, mineiro e de óleo e gás","proj1.tag":"Infraestruturas Rodoviárias","proj1.t":"Reabilitação do Corredor N4","proj1.d":"Investigações geotécnicas detalhadas para corredores de transporte, incluindo caracterização de aterros e avaliação de jazidas.","proj1.loc":"Província de Maputo, Moçambique","proj1.meta":"42 furos • CBR/Proctor • recomendações de pavimentação","proj2.tag":"Desenvolvimento Comercial","proj2.t":"Hub Logístico e Comercial de Maputo","proj2.d":"Investigações e recomendações de fundações para um complexo de armazéns e escritórios de 25.000 m² em solos moles.","proj2.loc":"Cidade de Maputo, Moçambique","proj2.meta":"18 furos • projeto de fundações • análise de assentamentos","proj3.tag":"Projetos Mineiros","proj3.t":"Apoio à Exploração de Carvão em Tete","proj3.d":"Apoio à exploração e caracterização do subsolo para infraestruturas mineiras e projeto de vias de transporte.","proj3.loc":"Província de Tete, Moçambique","proj3.meta":"120+ furos • caracterização de cobertura • monitorização","proj4.tag":"Óleo & Gás","proj4.t":"Base de Apoio LNG de Cabo Delgado","proj4.d":"Investigação costeira e melhoria do terreno para uma base logística de LNG, incluindo furos em areias coralinas e projeto de aterros.","proj4.loc":"Província de Cabo Delgado, Moçambique","proj4.meta":"30 furos • geotecnia costeira • projeto de aterros","proj5.tag":"Óleo & Gás","proj5.t":"Corredor do Gasoduto de Rovuma","proj5.d":"Investigação de traçado e avaliação de escavabilidade ao longo de um corredor de gasoduto de 40 km, com projetos de travessias e ensaios de corrosividade.","proj5.loc":"Bacia de Rovuma, Moçambique","proj5.meta":"40 km de traçado • escavabilidade • corrosividade","proj6.tag":"Mineração","proj6.t":"Investigação da Mina de Grafite de Balama","proj6.d":"Caracterização do subsolo e geotecnia de vias de transporte para um projeto de grafite, incluindo análise de estabilidade de escombreiras.","proj6.loc":"Província de Cabo Delgado, Moçambique","proj6.meta":"60 furos • vias de transporte • estabilidade de escombreiras",
+"eq.over":"A Nossa Frota","eq.title":"Equipamentos & Capacidades","eq.lead":"Modernos, com manutenção em dia e prontos para locais remotos e desafiantes","eq1.t":"Sondas de Perfuração Rotativa","eq1.p":"Sondas de rastos, capacidade 150 - 300 m","eq2.t":"Sondas de Carotagem","eq2.p":"Barriletes HQ / NQ / T2-66","eq3.t":"Equipamento SPT","eq3.p":"Martelos standard e automáticos","eq4.t":"DCP & Prova de Carga","eq4.p":"Conjuntos de ensaio de resistência in-situ","eq5.t":"Escavadoras para Poços","eq5.p":"Frota de apoio para valas de reconhecimento","eq6.t":"Piezómetros","eq6.p":"Instrumentos de monitorização de águas subterrâneas","eq7.t":"Equipamento Topográfico","eq7.p":"Estações totais e nivelamento GPS","eq8.t":"Laboratórios de Campo","eq8.p":"Kits móveis de ensaio e amostragem",
+"lab.over":"Laboratório Próprio","lab.title":"Ensaios de Precisão,<br>Resultados Rastreáveis","lab.p":"O nosso laboratório em Maputo realiza toda a gama de ensaios de solos e materiais necessários para o projeto geotécnico, com equipamento calibrado e controlo QA/QC rigoroso.","chip.1":"CBR","chip.2":"Compactação Proctor","chip.3":"Limites de Atterberg","chip.4":"Distribuição Granulométrica","chip.5":"Classificação","chip.6":"Teor de Humidade","chip.7":"Peso Específico","chip.8":"Compressão Simples","chip.9":"Carga Pontual","chip.10":"Triaxial","chip.11":"Consolidação","lab.n1s":"5 - 7 dias","lab.n1p":"Prazo médio de resultados","lab.n2s":"QA/QC","lab.n2p":"Procedimentos calibrados e controlados","lab.n3s":"12.000+","lab.n3p":"Ensaios realizados até hoje",
+"car.over":"Carreiras","car.title":"Construa a Sua Carreira Desde o Solo","car.lead":"Junte-se a uma equipa de engenheiros, sondadores e técnicos que se orgulham de dados precisos e obras seguras","car.apply":"Candidatar-me","car1.t":"Engenheiro Geotécnico","car1.m":"Maputo • Tempo integral","car1.href":"mailto:contact@geocore.co.mz?subject=Candidatura%20-%20Engenheiro%20Geot%C3%A9cnico","car2.t":"Chefe de Sondagem","car2.m":"Operações de Campo • Tempo integral","car2.href":"mailto:contact@geocore.co.mz?subject=Candidatura%20-%20Chefe%20de%20Sondagem","car3.t":"Técnico de Laboratório","car3.m":"Maputo • Tempo integral","car3.href":"mailto:contact@geocore.co.mz?subject=Candidatura%20-%20T%C3%A9cnico%20de%20Laborat%C3%B3rio",
+"cta.t":"Tem um projeto em mente?","cta.p":"Receba uma proposta técnica em 48 horas.","cta.b":"Pedir uma Proposta",
+"con.over":"Contacte-nos","con.title":"Vamos Discutir o Seu Projeto","con.lead":"Fale-nos do seu local e âmbito - a nossa equipa de engenharia responderá rapidamente","con.email":"Email","con.phone":"Telefone","con.loc":"Localização","con.locV":"Maputo, Moçambique","con.hours":"Horário","con.hoursV":"Segunda - Sexta, 07:00 - 17:00",
+"form.title":"Pedir uma Proposta","form.name":"Nome Completo","form.email":"Email","form.phone":"Telefone","form.service":"Serviço Necessário","form.o1":"Investigação Geotécnica","form.o2":"Serviços de Perfuração","form.o3":"Ensaios Laboratoriais","form.o4":"Engenharia de Fundações","form.o5":"Hidrogeologia","form.o6":"Consultoria / Outro","form.msg":"Detalhes do Projeto","form.phName":"O seu nome","form.phEmail":"voce@empresa.com","form.phPhone":"+258 ...","form.phMsg":"Localização da obra, âmbito, prazo...","form.send":"Enviar Pedido","form.subject":"Pedido de Proposta - ","form.ok":"Pedido enviado com sucesso! Responderemos em breve.","form.err":"Erro ao enviar. Tente novamente ou escreva-nos diretamente.",
+"foot.desc":"Empresa especialista em engenharia geotécnica que fornece dados fiáveis do subsolo, análise técnica e soluções engenheiradas para infraestruturas, mineração e desenvolvimento industrial.","foot.ql":"Links Rápidos","foot.svc":"Serviços","foot.con":"Contacto","foot.tag":"Construímos confiança desde o solo.","foot.rights":"© 2026 GeoCore Engenharia. Todos os Direitos Reservados.","foot.slogan":"Ground Intelligence <em>Engineered Solutions</em>"
+}};
+
+/* ============================================================
+   ✏️ LANGUAGE — default: 'en' (change to 'pt' if needed)
+   ============================================================ */
+let lang=localStorage.getItem('gc-lang')||'en';
+function applyLang(l){
+  lang=l;localStorage.setItem('gc-lang',l);
+  document.documentElement.lang=l;
+  document.title=I18N[l]['meta.title'];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(I18N[l][k]!==undefined)el.textContent=I18N[l][k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(I18N[l][k]!==undefined)el.innerHTML=I18N[l][k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.dataset.i18nPh;if(I18N[l][k]!==undefined)el.placeholder=I18N[l][k];});
+  document.querySelectorAll('[data-i18n-href]').forEach(el=>{const k=el.dataset.i18nHref;if(I18N[l][k]!==undefined)el.href=I18N[l][k];});
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.dataset.langBtn===l));
+}
+document.querySelectorAll('[data-lang-btn]').forEach(b=>b.onclick=()=>applyLang(b.dataset.langBtn));
+applyLang(lang);
+
+/* ============ HEADER / MENU / SCROLL ============ */
+const header=document.getElementById('header'),toTop=document.getElementById('toTop'),menuBtn=document.getElementById('menuBtn');
+addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40);toTop.classList.toggle('show',scrollY>600);scrollSpy();});
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+menuBtn.onclick=()=>{document.body.classList.toggle('nav-open');menuBtn.innerHTML=document.body.classList.contains('nav-open')?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';};
+
+/* ============================================================
+   SINGLE-PAGE NAV + BACK BUTTON
+   (1º "voltar" = sobe ao topo | 2º "voltar" = sai do site)
+   ============================================================ */
+let deep=!!location.hash;
+function goToHash(hash){
+  if(hash==='#top'||hash==='#home'||hash===''){window.scrollTo({top:0,behavior:'smooth'});return;}
+  const t=document.querySelector(hash);
+  if(t)t.scrollIntoView({behavior:'smooth'});
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const hash=a.getAttribute('href');
+    e.preventDefault();
+    goToHash(hash);
+    if(hash==='#top'||hash==='#home'){
+      if(deep){history.replaceState(null,'',location.pathname+location.search);deep=false;}
+    }else{
+      if(!deep){history.pushState({deep:1},'',hash);deep=true;}
+      else history.replaceState({deep:1},'',hash);
+    }
+    document.body.classList.remove('nav-open');
+    menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+  });
+});
+window.addEventListener('popstate',e=>{
+  if(deep){deep=false;window.scrollTo({top:0,behavior:'smooth'});}
+  else if(e.state&&e.state.deep){deep=true;goToHash(location.hash);}
+});
+
+/* ============ SCROLL SPY ============ */
+const links=[...document.querySelectorAll('#nav a.nl')];
+const secs=links.map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+function scrollSpy(){const y=scrollY+140;let cur=secs[0];secs.forEach(s=>{if(s.offsetTop<=y)cur=s;});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur.id||(cur.id==='top'&&l.getAttribute('href')==='#top')));}
+
+/* ============ ANIMATIONS / COUNTERS ============ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){animate(e.target);io2.unobserve(e.target);}}),{threshold:.6});
+document.querySelectorAll('.num').forEach(el=>io2.observe(el));
+function animate(el){const t=+el.dataset.target,d=1600,st=performance.now();
+(function f(n){const p=Math.min((n-st)/d,1),v=Math.floor(t*(1-Math.pow(1-p,3)));el.textContent=v.toLocaleString(lang==='pt'?'pt-PT':'en-US');if(p<1)requestAnimationFrame(f);})(st);}
+
+/* ============================================================
+   ✏️ WEB3FORMS — FORM INTEGRATION POINT
+   Change ONLY mode + accessKey when connecting Web3Forms.
+   ============================================================ */
+const FORM_CONFIG={
+  mode:"mailto",                      // "mailto" | "web3forms"
+  accessKey:"YOUR_ACCESS_KEY_HERE",   // ✏️ Web3Forms key
+  email:"contact@geocore.co.mz"       // ✏️ EMAIL (mailto fallback)
+};
+document.getElementById('proposalForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const d=new FormData(e.target);
+  if(FORM_CONFIG.mode==="web3forms"){
+    const payload=Object.fromEntries(d.entries());
+    payload.access_key=FORM_CONFIG.accessKey;
+    payload.language=lang.toUpperCase();
+    const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;
+    try{
+      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+      const j=await r.json();
+      alert(j.success?I18N[lang]['form.ok']:I18N[lang]['form.err']);
+      if(j.success)e.target.reset();
+    }catch(err){alert(I18N[lang]['form.err']);}
+    btn.disabled=false;
+    return;
+  }
+  const body=(lang==='pt'?'Nome: ':'Name: ')+d.get('name')+'\nEmail: '+d.get('email')+'\n'+(lang==='pt'?'Telefone: ':'Phone: ')+d.get('phone')+'\n'+(lang==='pt'?'Serviço: ':'Service: ')+d.get('service')+'\n\n'+d.get('message');
+  location.href=`mailto:${FORM_CONFIG.email}?subject=${encodeURIComponent(I18N[lang]['form.subject']+d.get('service'))}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
