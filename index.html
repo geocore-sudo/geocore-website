@@ -810,31 +810,65 @@ function animate(el){const t=+el.dataset.target,d=1600,st=performance.now();
 (function f(n){const p=Math.min((n-st)/d,1),v=Math.floor(t*(1-Math.pow(1-p,3)));el.textContent=v.toLocaleString(lang==='pt'?'pt-PT':'en-US');if(p<1)requestAnimationFrame(f);})(st);}
 
 /* ============================================================
-   ✏️ WEB3FORMS — FORM INTEGRATION POINT
-   Change ONLY mode + accessKey when connecting Web3Forms.
+   ✏️ WEB3FORMS — FORM INTEGRATION
    ============================================================ */
 const FORM_CONFIG={
-  mode:"web3froms",                      // "mailto" | "web3forms"
-  accessKey:"e9dee2ab-3884-45b7-b74e-f433c6345a48",   // ✏️ Web3Forms key
-  email:"contact@geocore.co.mz"       // ✏️ EMAIL (mailto fallback)
+  mode:"web3forms",                      // "mailto" | "web3forms"
+  accessKey:"e9dee2ab-3884-45b7-b74e-f433c6345a48",
+  email:"contact@geocore.co.mz"
 };
+
 document.getElementById('proposalForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const d=new FormData(e.target);
+  
+  // Se modo é web3forms, envia via API
   if(FORM_CONFIG.mode==="web3forms"){
-    const payload=Object.fromEntries(d.entries());
-    payload.access_key=FORM_CONFIG.accessKey;
-    payload.language=lang.toUpperCase();
-    const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;
+    const formData=new FormData(e.target);
+    const data={
+      access_key:FORM_CONFIG.accessKey,
+      name:formData.get('name'),
+      email:formData.get('email'),
+      phone:formData.get('phone'),
+      service:formData.get('service'),
+      message:formData.get('message'),
+      from_name:'GeoCore Website',
+      subject:FORM_CONFIG.accessKey?'New Proposal Request - '+formData.get('service'):'New Contact'
+    };
+    
+    const btn=e.target.querySelector('button[type=submit]');
+    const originalText=btn.innerHTML;
+    btn.disabled=true;
+    btn.innerHTML='<span data-i18n="form.sending">Sending...</span>';
+    
     try{
-      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
-      const j=await r.json();
-      alert(j.success?I18N[lang]['form.ok']:I18N[lang]['form.err']);
-      if(j.success)e.target.reset();
-    }catch(err){alert(I18N[lang]['form.err']);}
+      const response=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body:JSON.stringify(data)
+      });
+      
+      const result=await response.json();
+      
+      if(result.success){
+        alert(I18N[lang]['form.ok']);
+        e.target.reset();
+      }else{
+        alert(I18N[lang]['form.err']);
+      }
+    }catch(err){
+      alert(I18N[lang]['form.err']);
+    }
+    
     btn.disabled=false;
+    btn.innerHTML=originalText;
     return;
   }
+  
+  // Fallback para mailto (só se mode NÃO for "web3forms")
+  const d=new FormData(e.target);
   const body=(lang==='pt'?'Nome: ':'Name: ')+d.get('name')+'\nEmail: '+d.get('email')+'\n'+(lang==='pt'?'Telefone: ':'Phone: ')+d.get('phone')+'\n'+(lang==='pt'?'Serviço: ':'Service: ')+d.get('service')+'\n\n'+d.get('message');
   location.href=`mailto:${FORM_CONFIG.email}?subject=${encodeURIComponent(I18N[lang]['form.subject']+d.get('service'))}&body=${encodeURIComponent(body)}`;
 });
